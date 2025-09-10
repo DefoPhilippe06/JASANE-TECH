@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto py-8 px-4 max-w-6xl">
+    <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-bold text-gray-900">🛒 Mon Panier</h2>
+        <span class="text-sm text-gray-600">{{ cart_items|length }} article(s)</span>
+    </div>
+
+    {% if cart_items %}
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8">
+        <div class="overflow-x-auto">
+            <table class="w-full">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="py-4 px-6 text-left font-semibold text-gray-700">Produit</th>
+                        <th class="py-4 px-6 text-center font-semibold text-gray-700">Quantité</th>
+                        <th class="py-4 px-6 text-right font-semibold text-gray-700">Prix unitaire</th>
+                        <th class="py-4 px-6 text-right font-semibold text-gray-700">Total</th>
+                        <th class="py-4 px-6 text-center font-semibold text-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    {% for item in cart_items %}
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-4 px-6">
+                            <div class="flex items-center">
+                                {% if item.product.images.first %}
+                                <img src="{{ item.product.images.first.image.url }}" 
+                                     alt="{{ item.product.name }}"
+                                     class="w-16 h-16 object-cover rounded-lg mr-4">
+                                {% else %}
+                                <div class="w-16 h-16 bg-gray-200 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-box text-gray-400"></i>
+                                </div>
+                                {% endif %}
+                                <div>
+                                    <h3 class="font-medium text-gray-900">{{ item.product.name }}</h3>
+                                    <p class="text-sm text-gray-600">{{ item.product.category }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="py-4 px-6 text-center">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium">
+                                {{ item.quantity }}
+                            </span>
+                        </td>
+                        <td class="py-4 px-6 text-right">
+                            <span class="font-semibold text-gray-900">{{ item.product.price|floatformat:0 }} FCFA</span>
+                        </td>
+                        <td class="py-4 px-6 text-right">
+                            <span class="font-bold text-green-600">{{ item.total|floatformat:0 }} FCFA</span>
+                        </td>
+                        <td class="py-4 px-6 text-center">
+                            <a href="{% url 'products:remove_from_cart' item.product.id %}" 
+                               class="inline-flex items-center text-red-600 hover:text-red-800 transition-colors"
+                               title="Retirer du panier">
+                                <i class="fas fa-trash mr-1"></i>
+                                Retirer
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-lg p-6 mb-8">
+        <div class="flex justify-between items-center">
+            <div>
+                <h3 class="text-lg font-semibold text-gray-900">Récapitulatif de commande</h3>
+                <p class="text-sm text-gray-600">{{ cart_items|length }} article(s) dans votre panier</p>
+            </div>
+            <div class="text-right">
+                <p class="text-2xl font-bold text-green-600">{{ total_price|floatformat:0 }} FCFA</p>
+                <p class="text-sm text-gray-600">Total TTC</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de paiement pour le panier -->
+    <div class="bg-white rounded-xl shadow-lg p-6">
+        <div class="text-center mb-6">
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Finaliser votre commande</h3>
+            <p class="text-gray-600">Choisissez votre mode de paiement pour le panier complet</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <button type="button" 
+                    class="payment-option-cart bg-orange-500 hover:bg-orange-600 text-white p-4 rounded-lg transition-all transform hover:scale-105 flex flex-col items-center justify-center"
+                    data-method="orange">
+                <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                <span class="font-semibold">Orange Money</span>
+                <span class="text-sm opacity-90">Payer avec Orange</span>
+            </button>
+
+            <button type="button" 
+                    class="payment-option-cart bg-yellow-500 hover:bg-yellow-600 text-white p-4 rounded-lg transition-all transform hover:scale-105 flex flex-col items-center justify-center"
+                    data-method="mtn">
+                <i class="fas fa-mobile-alt text-2xl mb-2"></i>
+                <span class="font-semibold">MTN Mobile Money</span>
+                <span class="text-sm opacity-90">Payer avec MTN</span>
+            </button>
+
+            <button type="button" 
+                    class="payment-option-cart bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-lg transition-all transform hover:scale-105 flex flex-col items-center justify-center"
+                    data-method="card">
+                <i class="fas fa-credit-card text-2xl mb-2"></i>
+                <span class="font-semibold">Carte Bancaire</span>
+                <span class="text-sm opacity-90">Payer par carte</span>
+            </button>
+        </div>
+
+        <div class="text-center">
+            <p class="text-sm text-gray-600 mb-4">
+                <i class="fas fa-lock mr-1"></i>
+                Paiement sécurisé par CinetPay
+            </p>
+        </div>
+    </div>
+
+    {% else %}
+    <div class="text-center py-16">
+        <div class="mx-auto w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mb-6">
+            <i class="fas fa-shopping-cart text-3xl text-gray-400"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Votre panier est vide</h3>
+        <p class="text-gray-600 mb-6">Ajoutez des produits pour commencer vos achats</p>
+        <a href="{% url 'products:product_list' %}" 
+           class="inline-flex items-center bg-primary-600 text-white px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors">
+            <i class="fas fa-shopping-bag mr-2"></i>
+            Découvrir les produits
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Modal de sélection de mode de paiement -->
+<div id="paymentModalCart" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+        <div class="px-6 py-4 border-b">
+            <h3 class="text-xl font-semibold text-gray-900">Confirmer le paiement</h3>
+            <p class="text-sm text-gray-600">Total: {{ total_price|floatformat:0 }} FCFA</p>
+        </div>
+        <div class="p-6">
+            <p class="text-gray-700 mb-4">Vous allez être redirigé vers la plateforme de paiement sécurisée.</p>
+            <div class="flex space-x-4">
+                <button type="button" id="confirmPaymentCart" 
+                        class="flex-1 bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-4 rounded-lg transition-colors">
+                    Confirmer
+                </button>
+                <button type="button" id="closePaymentModalCart" 
+                        class="flex-1 bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-3 px-4 rounded-lg transition-colors">
+                    Annuler
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentOptions = document.querySelectorAll('.payment-option-cart');
+    const paymentModal = document.getElementById('paymentModalCart');
+    const closeModalBtn = document.getElementById('closePaymentModalCart');
+    const confirmPaymentBtn = document.getElementById('confirmPaymentCart');
+    
+    let selectedMethod = '';
+
+    paymentOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            selectedMethod = this.dataset.method;
+            paymentModal.classList.remove('hidden');
+            paymentModal.classList.add('flex');
+        });
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+        paymentModal.classList.remove('flex');
+        paymentModal.classList.add('hidden');
+    });
+
+    confirmPaymentBtn.addEventListener('click', function() {
+        if (selectedMethod) {
+            // URL CORRIGÉE : utilisez la nouvelle route pour le panier
+            window.location.href = `/users/payment/initiate/cart/?method=${selectedMethod}&amount={{ total_price }}&description=Panier complet`;
+        }
+    });
+
+    paymentModal.addEventListener('click', function(e) {
+        if (e.target === paymentModal) {
+            paymentModal.classList.remove('flex');
+            paymentModal.classList.add('hidden');
+        }
+    });
+});
+</script>
+
+<style>
+.payment-option-cart {
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.payment-option-cart:hover {
+    border-color: currentColor;
+    transform: translateY(-2px);
+}
+
+.payment-option-cart:active {
+    transform: translateY(0);
+}
+</style>
+{% endblock %}

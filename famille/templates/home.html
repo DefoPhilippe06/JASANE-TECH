@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JASANE-TECH - A new vision of technologie!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .hero-gradient {
+            background: linear-gradient(120deg, #09d89aff 0%, #0e4c8a 100%);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .brand-logo {
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        .brand-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white bg-opacity-60 shadow-lg fixed w-full z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-2">
+                    <!-- Logo adapté -->
+                    <div class="flex items-center space-x-2">
+                        <img src="/static/images/logo-jasane.png" alt="JASANE Technology" class="h-10 w-10 object-contain" />
+                        <span class="text-xl font-bold text-black">JASANE-TECH</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-1">
+                    <a href="{% url 'home' %}" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">Accueil</a>
+                    <a href="#about" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">À propos</a>
+                    <a href="{% url 'products:product_list' %}" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">Produits</a>
+                    <a href="{% url 'products:cart' %}" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">Panier</a>
+                    <a href="{% url 'products:category_list' %}" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">Catégories</a>
+                    <a href="{% url 'settings' %}" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">Paramètres</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg text-black hover:bg-blue-50 hover:text-blue-600 font-medium">Contact</a>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-black hover:text-gray-700">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-60 border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="{% url 'home' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">Accueil</a>
+                <a href="{% url 'about' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">À propos</a>
+                <a href="{% url 'products:product_list' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">Produits</a>
+                <a href="{% url 'products:cart' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">Panier</a>
+                <a href="{% url 'products:category_list' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">Catégories</a>
+                <a href="{% url 'settings' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">Paramètres</a>
+                <a href="{% url 'contact' %}" class="block px-3 py-2 rounded-md text-black font-medium hover:bg-blue-50 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section avec image de fond -->
+    <section id="accueil" class="relative pt-24 pb-16 md:pt-32 md:pb-24 text-black overflow-hidden">
+        <img src="/static/images/mon-image.jpg" alt="Fond d'écran" class="absolute inset-0 w-full h-full object-cover opacity-1000 z-0" />
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">A new vision of technologie!</h1>
+                <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Expert en énergie, équipements industriels et solutions techniques innovantes</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="bg-white text-blue-700 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors shadow-md">Nous contacter</a>
+                    <a href="#services" class="bg-transparent border-2 border-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-700 transition-colors">Nos services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-12 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-10">
+                <h2 class="text-2xl font-bold text-gray-900">Nos partenaires</h2>
+                <p class="text-gray-600">Nous collaborons avec les plus grandes marques</p>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center">
+                {% for partner in partners %}
+                    <a href="{{ partner.website }}" target="_blank" rel="noopener" class="block">
+                        <img src="{{ partner.logo.url }}" alt="{{ partner.name }}" class="brand-logo mx-auto h-10" />
+                        <div class="text-center text-gray-700 text-sm mt-2">{{ partner.name }}</div>
+                    </a>
+                {% empty %}
+                    <div class="col-span-6 text-center text-gray-400">Aucun partenaire enregistré pour le moment.</div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Nos services</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Des solutions complètes pour l'industrie et le tertiaire</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Compresseurs -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-wind text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Compresseurs d'air</h3>
+                    <p class="text-gray-600 mb-4">Maintenance et pièces de rechange pour tous types de compresseurs (vis, piston, palette)</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Toutes marques</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Consommables</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-blue-500 mr-2"></i> Production d'air de qualité</li>
+                    </ul>
+                </div>
+
+                <!-- Groupes électrogènes -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-bolt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Groupes électrogènes</h3>
+                    <p class="text-gray-600 mb-4">Intervention sur toutes marques et fourniture de consommables</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Maintenance</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Pièces détachées</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2"></i> Automatisation</li>
+                    </ul>
+                </div>
+
+                <!-- Électricité -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-plug text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Électricité industrielle</h3>
+                    <p class="text-gray-600 mb-4">Rénovation et réalisation d'installations électriques suivant les normes en vigueur</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Câblage TGBT</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Automatisation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-yellow-500 mr-2"></i> Salle de pompage</li>
+                    </ul>
+                </div>
+
+                <!-- Éclairage LED -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-lightbulb text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Éclairage LED</h3>
+                    <p class="text-gray-600 mb-4">Solutions d'éclairage LED pour industries et particuliers</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Économie d'énergie</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Applications industrielles</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Éclairage de travaux</li>
+                    </ul>
+                </div>
+
+                <!-- EPI -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-hard-hat text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Équipements de protection</h3>
+                    <p class="text-gray-600 mb-4">Fourniture d'EPI de qualité pour la sécurité au travail</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Gants et lunettes</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Chaussures de sécurité</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-red-500 mr-2"></i> Casques et gilets</li>
+                    </ul>
+                </div>
+
+                <!-- Transfert de fluides -->
+                <div class="service-card bg-white rounded-xl shadow-md p-6 border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-4">
+                        <i class="fas fa-tint text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Transfert de fluides</h3>
+                    <p class="text-gray-600 mb-4">Solutions adaptées selon les types et débits des fluides</p>
+                    <ul class="text-sm text-gray-600 space-y-1">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> Pompes et systèmes</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> Conception sur mesure</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-indigo-500 mr-2"></i> Installation et maintenance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-6">À propos de JASANE-TECH</h2>
+                    <p class="text-gray-600 mb-4">JASANE-TECH est une entreprise de prestation de service basée à Douala Cameroun, exerçant dans les domaines de l'énergie (Groupe électrogène, Compresseur d'air; Electricité industrielle & Automatisme; et tertiaire...) et de fourniture d'équipements pour l'industrie.</p>
+                    <p class="text-gray-600 mb-4">Nous avons fait le choix depuis 4 ans d'offrir à nos clients un service qui répond de façon optimale aux attentes de nos clients.</p>
+                    <p class="text-gray-600 mb-6">Une entreprise composée de ressources humaines qualifiées tournée vers la clientèle, la qualité, la sécurité et l'innovation, portant une culture commune d'excellence et partageant une démarche d'amélioration continue.</p>
+                    <div class="flex items-center space-x-4">
+                        <div class="bg-blue-100 text-blue-800 px-4 py-2 rounded-lg font-medium">
+                            <i class="fas fa-phone-alt mr-2"></i> +237 694 53 23 62
+                        </div>
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-medium">
+                            <i class="fas fa-envelope mr-2"></i> bouboualex785@gmail.com
+                        </div>
+                    </div>
+                </div>
+                <div class="order-first lg:order-last">
+                    <div class="bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl p-8 h-full text-white">
+                        <div class="text-4xl font-bold mb-4">4+</div>
+                        <h3 class="text-xl font-semibold mb-2">Ans d'expérience</h3>
+                        <p class="opacity-90">Au service de l'industrie camerounaise avec expertise et professionnalisme</p>
+                        
+                        <div class="mt-8 pt-6 border-t border-blue-400">
+                            <h3 class="text-lg font-semibold mb-4">Nos valeurs</h3>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-blue-200 mr-2"></i>
+                                    <span>Qualité</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-blue-200 mr-2"></i>
+                                    <span>Innovation</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-blue-200 mr-2"></i>
+                                    <span>Sécurité</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-blue-200 mr-2"></i>
+                                    <span>Excellence</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Ils nous ont fait confiance</h2>
+                <p class="text-xl text-gray-600">Des entreprises qui nous accordent leur confiance</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-building text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">SOCIETE ATLAS NEGOCE</h3>
+                    <p class="text-gray-600">Partenaire industriel</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-industry text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Hoka Industrie Sarl</h3>
+                    <p class="text-gray-600">Client industriel</p>
+                </div>
+                
+                <div class="bg-gray-50 p-6 rounded-xl border border-gray-200 text-center">
+                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-utensils text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Boucherie Charcuterie Du Littoral</h3>
+                    <p class="text-gray-600">Client du secteur alimentaire</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Contactez-nous</h2>
+                <p class="text-xl text-gray-300">Discutons de vos besoins en solutions industrielles</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Coordonnées</h3>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-3 rounded-lg mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Adresse</h4>
+                                <p class="text-gray-300">Douala, Littoral<br>Cameroun</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-3 rounded-lg mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Téléphone</h4>
+                                <p class="text-gray-300">+237 694 53 23 62</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-blue-600 p-3 rounded-lg mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-300">bouboualex785@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4">Suivez-nous</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold mb-6">Envoyez-nous un message</h3>
+                    {% if message_sent %}
+                        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded-lg font-semibold">Votre message a été envoyé avec succès !</div>
+                    {% elif error_message %}
+                        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded-lg font-semibold">{{ error_message }}</div>
+                    {% endif %}
+                    <form method="post" class="space-y-4">
+                        {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        <div>
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                            {{ form.name.errors }}
+                        </div>
+                        <div>
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                            {{ form.email.errors }}
+                        </div>
+                        <div>
+                            {{ form.subject.label_tag }}
+                            {{ form.subject }}
+                            {{ form.subject.errors }}
+                        </div>
+                        <div>
+                            {{ form.message.label_tag }}
+                            {{ form.message }}
+                            {{ form.message.errors }}
+                        </div>
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-500 transition-colors w-full">
+                            Envoyer le message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 py-8 text-gray-400">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p>© 2023 JASANE-TECH. Tous droits réservés.</p>
+            <p class="mt-2">A new vision of technologie!</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                    
+                    // Scroll to element
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% block title %}À propos - Mon Application{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- Hero Section -->
+    <section class="text-center mb-16">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">À propos de <span class="text-primary-600">Mon Application</span></h1>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">Notre mission est de révolutionner votre expérience d'achat en ligne avec des produits de qualité, un service exceptionnel et une plateforme intuitive.</p>
+    </section>
+
+    <!-- Notre histoire -->
+    <section class="mb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Notre histoire</h2>
+                <div class="space-y-4 text-gray-700">
+                    <p>Fondée en 2020, Mon Application est née d'une vision simple : rendre le commerce en ligne accessible, sécurisé et agréable pour tous.</p>
+                    <p>Ce qui a commencé comme un petit projet entre passionnés est rapidement devenu une plateforme de référence, grâce à notre engagement envers l'excellence et la satisfaction client.</p>
+                    <p>Aujourd'hui, nous sommes fiers de servir des milliers de clients à travers le pays avec une gamme de produits soigneusement sélectionnés et un service client dévoué.</p>
+                </div>
+            </div>
+            <div class="order-first lg:order-last">
+                <div class="bg-gradient-to-br from-primary-50 to-blue-50 rounded-2xl p-8 h-full">
+                    <div class="relative h-80">
+                        <div class="absolute top-0 left-0 w-3/4 h-3/4 bg-primary-200 rounded-2xl"></div>
+                        <div class="absolute bottom-0 right-0 w-3/4 h-3/4 bg-primary-100 rounded-2xl border-8 border-white shadow-lg flex items-center justify-center">
+                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Notre équipe" class="rounded-xl object-cover w-full h-full">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos valeurs -->
+    <section class="mb-16">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Nos valeurs</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 text-center hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Sécurité</h3>
+                <p class="text-gray-600 text-sm">Transactions chiffrées et protection des données pour une expérience d'achat en toute confiance.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 text-center hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-medal text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Qualité</h3>
+                <p class="text-gray-600 text-sm">Des produits rigoureusement sélectionnés pour leur excellence et leur durabilité.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 text-center hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-headset text-purple-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Service</h3>
+                <p class="text-gray-600 text-sm">Une équipe dévouée à votre satisfaction, disponible pour répondre à toutes vos questions.</p>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100 text-center hover:shadow-lg transition-shadow">
+                <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-truck text-orange-600 text-2xl"></i>
+                </div>
+                <h3 class="font-semibold text-lg mb-2">Rapidité</h3>
+                <p class="text-gray-600 text-sm">Livraison express et traitement efficace des commandes pour vous servir au plus vite.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pourquoi nous choisir -->
+    <section class="mb-16 bg-gradient-to-r from-primary-600 to-primary-700 rounded-2xl text-white overflow-hidden">
+        <div class="p-10 md:p-16">
+            <h2 class="text-3xl font-bold mb-8 text-center">Pourquoi choisir Mon Application ?</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="flex items-start">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Produits variés et authentiques</h3>
+                        <p class="text-primary-100">Large sélection de produits de qualité, régulièrement mis à jour.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Paiement sécurisé</h3>
+                        <p class="text-primary-100">Mobile Money, cartes bancaires et autres méthodes de paiement cryptées.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Support client réactif</h3>
+                        <p class="text-primary-100">Notre équipe vous répond en moins de 24h, 7j/7.</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-start">
+                    <div class="bg-white bg-opacity-20 p-3 rounded-lg mr-4">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold text-lg mb-2">Livraison rapide</h3>
+                        <p class="text-primary-100">Expédition sous 24h et livraison en 2-5 jours ouvrés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="mb-16">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                <div class="text-3xl font-bold text-primary-600 mb-2">10K+</div>
+                <div class="text-gray-600">Clients satisfaits</div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                <div class="text-3xl font-bold text-primary-600 mb-2">5K+</div>
+                <div class="text-gray-600">Produits disponibles</div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                <div class="text-3xl font-bold text-primary-600 mb-2">98%</div>
+                <div class="text-gray-600">Satisfaction client</div>
+            </div>
+            
+            <div class="bg-white p-6 rounded-2xl shadow-md border border-gray-100">
+                <div class="text-3xl font-bold text-primary-600 mb-2">24h</div>
+                <div class="text-gray-600">Support réactif</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Équipe -->
+    <section class="mb-16">
+        <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Notre équipe</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-primary-500 to-blue-500 p-1">
+                    <img src="https://i.pravatar.cc/300?u=1" alt="Membre d'équipe" class="w-full h-full object-cover rounded-full">
+                </div>
+                <h3 class="font-semibold text-lg">Jean Dupont</h3>
+                <p class="text-primary-600 mb-2">Fondateur & CEO</p>
+                <p class="text-gray-600 text-sm">Visionnaire passionné par l'innovation et l'expérience client.</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-green-500 to-teal-500 p-1">
+                    <img src="https://i.pravatar.cc/300?u=2" alt="Membre d'équipe" class="w-full h-full object-cover rounded-full">
+                </div>
+                <h3 class="font-semibold text-lg">Marie Martin</h3>
+                <p class="text-primary-600 mb-2">Directrice Marketing</p>
+                <p class="text-gray-600 text-sm">Expert en stratégie digitale et relation client.</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 p-1">
+                    <img src="https://i.pravatar.cc/300?u=3" alt="Membre d'équipe" class="w-full h-full object-cover rounded-full">
+                </div>
+                <h3 class="font-semibold text-lg">Thomas Leroy</h3>
+                <p class="text-primary-600 mb-2">Responsable Technique</p>
+                <p class="text-gray-600 text-sm">Garant de la sécurité et des performances de la plateforme.</p>
+            </div>
+            
+            <div class="text-center">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-r from-yellow-500 to-orange-500 p-1">
+                    <img src="https://i.pravatar.cc/300?u=4" alt="Membre d'équipe" class="w-full h-full object-cover rounded-full">
+                </div>
+                <h3 class="font-semibold text-lg">Sophie Petit</h3>
+                <p class="text-primary-600 mb-2">Responsable Service Client</p>
+                <p class="text-gray-600 text-sm">Dévouée à votre satisfaction et à la résolution de vos problèmes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Prêt à faire votre premier achat ?</h2>
+        <p class="text-gray-600 mb-8 max-w-2xl mx-auto">Rejoignez des milliers de clients satisfaits et découvrez pourquoi Mon Application est la plateforme de confiance pour vos achats en ligne.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="{% url 'products:product_list' %}" class="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg inline-flex items-center justify-center">
+                <i class="fas fa-shopping-bag mr-2"></i> Découvrir nos produits
+            </a>
+            <a href="{% url 'contact' %}" class="bg-white text-primary-600 border border-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors inline-flex items-center justify-center">
+                <i class="fas fa-envelope mr-2"></i> Nous contacter
+            </a>
+        </div>
+    </section>
+</div>
+
+<style>
+    /* Animation pour les éléments */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    section {
+        animation: fadeInUp 0.8s ease-out forwards;
+    }
+    
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+    section:nth-child(7) { animation-delay: 0.7s; }
+    section:nth-child(8) { animation-delay: 0.8s; }
+</style>
+{% endblock %}

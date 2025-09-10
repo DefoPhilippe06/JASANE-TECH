@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 max-w-7xl">
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+        <!-- Galerie d'images -->
+        <div class="lg:w-1/2">
+            {% if product.images.all %}
+            <div class="relative">
+                <!-- Image principale -->
+                <div id="main-image" class="bg-gray-50 rounded-xl overflow-hidden mb-4 flex items-center justify-center" style="height: 400px;">
+                    <img src="{{ product.images.first.image.url }}" 
+                         alt="{{ product.images.first.alt_text }}" 
+                         class="max-h-full max-w-full object-contain p-4"
+                         id="current-image">
+                </div>
+                
+                <!-- Miniatures -->
+                <div class="grid grid-cols-4 gap-3">
+                    {% for image in product.images.all %}
+                    <button class="thumbnail-btn bg-blue-100 rounded-lg overflow-hidden h-20 flex items-center justify-center border-2 border-blue-600 focus:border-blue-700 shadow-md transition-all duration-200" 
+                            data-image-src="{{ image.image.url }}"
+                            data-image-alt="{{ image.alt_text }}">
+                        <img src="{{ image.image.url }}" 
+                             alt="{{ image.alt_text }}" 
+                             class="max-h-full max-w-full object-contain p-1">
+                    </button>
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class="bg-gray-50 rounded-xl flex items-center justify-center" style="height: 400px;">
+                <i class="fas fa-box-open text-5xl text-gray-300"></i>
+            </div>
+            {% endif %}
+        </div>
+
+        <!-- Détails du produit -->
+        <div class="lg:w-1/2">
+            <div class="sticky top-4">
+                <!-- Titre et prix -->
+                <h1 class="text-3xl font-bold text-gray-900 mb-2">{{ product.name }}</h1>
+                
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-primary-600 font-bold text-2xl">{{ product.price }} FCFA</span>
+                    {% if product.old_price %}
+                    <span class="text-gray-400 text-lg line-through">{{ product.old_price }} FCFA</span>
+                    <span class="bg-red-100 text-red-800 text-xs font-medium px-2 py-0.5 rounded">-{{ product.discount_percentage }}%</span>
+                    {% endif %}
+                </div>
+
+                <!-- Catégorie et disponibilité -->
+                <div class="flex items-center gap-4 text-sm text-gray-600 mb-6">
+                    <span class="flex items-center gap-1">
+                        <i class="fas fa-tag"></i>
+                        {{ product.category }}
+                    </span>
+                    <span class="flex items-center gap-1 {% if product.in_stock %}text-green-600{% else %}text-red-600{% endif %}">
+                        <i class="fas {% if product.in_stock %}fa-check-circle{% else %}fa-times-circle{% endif %}"></i>
+                        {% if product.in_stock %}En stock{% else %}Rupture de stock{% endif %}
+                    </span>
+                </div>
+
+                <!-- Description -->
+                <div class="prose max-w-none text-gray-700 mb-8">
+                    {{ product.description|linebreaks }}
+                </div>
+
+                <!-- Actions -->
+                <div class="space-y-3">
+                    {% if product.in_stock %}
+                    <form method="post" action="{% url 'products:add_to_cart' product.pk %}" class="w-full">
+                        {% csrf_token %}
+                        <button type="submit" 
+                                class="w-full bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2">
+                            <i class="fas fa-cart-plus"></i>
+                            Ajouter au panier
+                        </button>
+                    </form>
+                    {% endif %}
+                    
+                    <!-- Bouton pour ouvrir le modal de paiement -->
+                    <button type="button" 
+                            id="openPaymentModal"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-md">
+                        <i class="fas fa-bolt"></i>
+                        Commander maintenant
+                    </button>
+                </div>
+
+                <!-- Informations supplémentaires -->
+                <div class="mt-8 border-t border-gray-200 pt-6">
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="text-primary-600 mt-0.5">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-900">Livraison rapide</h3>
+                                <p class="text-sm text-gray-600">Livraison sous 2-3 jours ouvrés</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="text-primary-600 mt-0.5">
+                                <i class="fas fa-undo"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-900">Retours faciles</h3>
+                                <p class="text-sm text-gray-600">14 jours pour changer d'avis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de sélection de mode de paiement -->
+<div id="paymentModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+        <div class="px-6 py-4 border-b">
+            <h3 class="text-xl font-semibold text-gray-900">Choisissez votre mode de paiement</h3>
+        </div>
+        <div class="p-6 space-y-4">
+            <button type="button" 
+                    class="w-full bg-orange-500 hover:bg-orange-600 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 payment-option"
+                    data-method="orange">
+                <i class="fas fa-mobile-alt"></i>
+                Payer avec Orange Money
+            </button>
+            
+            <button type="button" 
+                    class="w-full bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 payment-option"
+                    data-method="mtn">
+                <i class="fas fa-mobile-alt"></i>
+                Payer avec MTN Mobile Money
+            </button>
+            
+            <button type="button" 
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2 payment-option"
+                    data-method="card">
+                <i class="fas fa-credit-card"></i>
+                Payer par carte bancaire
+            </button>
+        </div>
+        <div class="flex justify-end px-6 py-4 border-t">
+            <button type="button" id="closePaymentModal" class="text-gray-500 hover:text-gray-700">
+                Annuler
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Script pour la galerie d'images et le modal de paiement -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des miniatures
+    const thumbnails = document.querySelectorAll('.thumbnail-btn');
+    const mainImage = document.getElementById('current-image');
+    
+    thumbnails.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+            // Mettre à jour l'image principale
+            mainImage.src = this.dataset.imageSrc;
+            mainImage.alt = this.dataset.imageAlt;
+            
+            // Mettre à jour la bordure active
+            thumbnails.forEach(t => t.classList.remove('border-primary-500', 'border-2'));
+            thumbnails.forEach(t => t.classList.add('border-transparent'));
+            this.classList.remove('border-transparent');
+            this.classList.add('border-primary-500', 'border-2');
+        });
+    });
+
+    // Gestion du modal de paiement
+    const openModalBtn = document.getElementById('openPaymentModal');
+    const closeModalBtn = document.getElementById('closePaymentModal');
+    const paymentModal = document.getElementById('paymentModal');
+    const paymentOptions = document.querySelectorAll('.payment-option');
+
+    openModalBtn.addEventListener('click', function() {
+        paymentModal.classList.remove('hidden');
+        paymentModal.classList.add('flex');
+    });
+
+    closeModalBtn.addEventListener('click', function() {
+        paymentModal.classList.remove('flex');
+        paymentModal.classList.add('hidden');
+    });
+
+    // Gérer la sélection du mode de paiement
+    paymentOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const method = this.dataset.method;
+            initiatePayment(method);
+        });
+    });
+
+    // Fonction pour initier le paiement - CORRIGÉE
+    function initiatePayment(method) {
+        const productId = "{{ product.id }}";
+        const amount = "{{ product.price }}";
+        const description = "Achat de {{ product.name }}";
+        
+        // URL CORRIGÉE : utilisez le chemin correct avec le namespace 'users'
+        window.location.href = `/users/payment/initiate/?product_id=${productId}&method=${method}&amount=${amount}&description=${encodeURIComponent(description)}`;
+    }
+});
+</script>
+
+<style>
+.prose {
+    line-height: 1.6;
+}
+.prose p {
+    margin-bottom: 1em;
+}
+</style>
+{% endblock %}

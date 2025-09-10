@@ -1,0 +1,265 @@
+{% extends "base.html" %}
+{% block title %}Paramètres - Mon Application{% endblock %}
+{% block content %}
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <!-- En-tête -->
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold text-gray-900 mb-2">Paramètres du compte</h1>
+        <p class="text-gray-600">Gérez vos préférences et informations personnelles</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Navigation latérale -->
+        <div class="lg:col-span-1">
+            <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="p-6 border-b border-gray-200">
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <img src="https://i.pravatar.cc/60?u={{ request.user.id }}" alt="Avatar" class="w-14 h-14 rounded-full object-cover">
+                            <button class="absolute bottom-0 right-0 bg-primary-600 text-white p-1.5 rounded-full shadow-md hover:bg-primary-700 transition-colors">
+                                <i class="fas fa-camera text-xs"></i>
+                            </button>
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-gray-900">{{ request.user.username }}</h3>
+                            <p class="text-sm text-gray-500">{{ request.user.email }}</p>
+                        </div>
+                    </div>
+                </div>
+                <nav class="p-2">
+                    <a href="#profile" class="flex items-center px-4 py-3 rounded-lg bg-primary-50 text-primary-700 font-medium mb-1">
+                        <i class="fas fa-user-circle mr-3"></i>
+                        Profil
+                    </a>
+                    <a href="#security" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium mb-1">
+                        <i class="fas fa-lock mr-3"></i>
+                        Sécurité
+                    </a>
+                    <a href="#notifications" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium mb-1">
+                        <i class="fas fa-bell mr-3"></i>
+                        Notifications
+                    </a>
+                    <a href="#privacy" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium mb-1">
+                        <i class="fas fa-shield-alt mr-3"></i>
+                        Confidentialité
+                    </a>
+                    <a href="#preferences" class="flex items-center px-4 py-3 rounded-lg text-gray-700 hover:bg-gray-100 font-medium">
+                        <i class="fas fa-cog mr-3"></i>
+                        Préférences
+                    </a>
+                </nav>
+            </div>
+            
+            <div class="mt-6 bg-red-50 border border-red-200 rounded-xl p-5">
+                <h3 class="font-semibold text-red-800 mb-2 flex items-center">
+                    <i class="fas fa-exclamation-circle mr-2"></i> Zone dangereuse
+                </h3>
+                <p class="text-red-600 text-sm mb-4">Ces actions sont irréversibles. Veuillez être certain de votre choix.</p>
+                <button class="w-full bg-white border border-red-300 text-red-600 py-2.5 px-4 rounded-lg font-medium hover:bg-red-50 transition-colors flex items-center justify-center">
+                    <i class="fas fa-trash-alt mr-2"></i> Supprimer le compte
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenu principal -->
+        <div class="lg:col-span-2">
+            <!-- Section Profil -->
+            <div id="profile" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-user-circle text-primary-600 mr-2"></i> Informations du profil
+                </h2>
+                
+                <form class="space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Nom</label>
+                            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" value="Votre nom">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Prénom</label>
+                            <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" value="Votre prénom">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Nom d'utilisateur</label>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 bg-gray-50" value="{{ request.user.username }}" readonly>
+                        <p class="text-xs text-gray-500 mt-1.5">Vous ne pouvez pas modifier votre nom d'utilisateur.</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Adresse email</label>
+                        <input type="email" class="w-full border border-gray-300 rounded-lg px-4 py-2.5" value="{{ request.user.email }}">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1.5">Bio</label>
+                        <textarea class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" rows="3" placeholder="Décrivez-vous en quelques mots..."></textarea>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="bg-primary-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-primary-700 transition-colors flex items-center">
+                            <i class="fas fa-save mr-2"></i> Enregistrer les modifications
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Section Sécurité -->
+            <div id="security" class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-lock text-primary-600 mr-2"></i> Sécurité du compte
+                </h2>
+                
+                <div class="space-y-5">
+                    <div class="p-4 bg-blue-50 border border-blue-100 rounded-lg">
+                        <h3 class="font-medium text-blue-800 mb-2 flex items-center">
+                            <i class="fas fa-shield-alt mr-2"></i> Mot de passe
+                        </h3>
+                        <p class="text-sm text-blue-600 mb-3">Il est recommandé de changer votre mot de passe régulièrement pour assurer la sécurité de votre compte.</p>
+                        
+                        <form class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Mot de passe actuel</label>
+                                <div class="relative">
+                                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Entrez votre mot de passe actuel">
+                                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Nouveau mot de passe</label>
+                                <div class="relative">
+                                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Créez un nouveau mot de passe">
+                                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 mt-2">
+                                    <div class="flex items-center">
+                                        <div class="h-1 w-full bg-gray-200 rounded">
+                                            <div class="h-1 bg-red-500 rounded" style="width: 30%"></div>
+                                        </div>
+                                    </div>
+                                    <p class="text-xs text-red-500">Faible</p>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1.5">Confirmer le nouveau mot de passe</label>
+                                <div class="relative">
+                                    <input type="password" class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Confirmez votre nouveau mot de passe">
+                                    <button type="button" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="pt-2">
+                                <button type="submit" class="bg-primary-600 text-white px-5 py-2.5 rounded-lg font-medium hover:bg-primary-700 transition-colors">
+                                    Mettre à jour le mot de passe
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="p-4 bg-green-50 border border-green-100 rounded-lg">
+                        <h3 class="font-medium text-green-800 mb-2 flex items-center">
+                            <i class="fas fa-mobile-alt mr-2"></i> Authentification à deux facteurs
+                        </h3>
+                        <p class="text-sm text-green-600 mb-3">Ajoutez une couche de sécurité supplémentaire à votre compte.</p>
+                        
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600">Non activée</span>
+                            <button class="bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium hover:bg-green-700 transition-colors">
+                                Activer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Style pour la force du mot de passe */
+    .password-strength {
+        height: 4px;
+        background-color: #e5e7eb;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    
+    .password-strength-bar {
+        height: 100%;
+        border-radius: 2px;
+        transition: width 0.3s ease;
+    }
+    
+    /* Animation pour les sections */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    #profile, #security {
+        animation: fadeIn 0.5s ease-out;
+    }
+</style>
+
+<script>
+    // Fonctionnalité pour basculer la visibilité du mot de passe
+    document.querySelectorAll('button').forEach(button => {
+        if (button.querySelector('.fa-eye')) {
+            button.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    this.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                } else {
+                    input.type = 'password';
+                    this.innerHTML = '<i class="fas fa-eye"></i>';
+                }
+            });
+        }
+    });
+    
+    // Simulation de la force du mot de passe
+    document.querySelector('input[placeholder="Créez un nouveau mot de passe"]').addEventListener('input', function(e) {
+        const value = e.target.value;
+        const strengthBar = document.querySelector('.password-strength-bar');
+        const strengthText = document.querySelector('.text-xs');
+        
+        let strength = 0;
+        let color = 'red';
+        let text = 'Faible';
+        
+        if (value.length >= 8) strength += 25;
+        if (value.match(/[a-z]/) && value.match(/[A-Z]/)) strength += 25;
+        if (value.match(/\d/)) strength += 25;
+        if (value.match(/[^a-zA-Z\d]/)) strength += 25;
+        
+        if (strength >= 75) {
+            color = 'green';
+            text = 'Fort';
+        } else if (strength >= 50) {
+            color = 'orange';
+            text = 'Moyen';
+        } else if (strength >= 25) {
+            color = 'yellow';
+            text = 'Faible';
+        } else {
+            color = 'red';
+            text = 'Très faible';
+        }
+        
+        strengthBar.style.width = strength + '%';
+        strengthBar.style.backgroundColor = color;
+        strengthText.textContent = text;
+        strengthText.className = 'text-xs text-' + color + '-500';
+    });
+</script>
+{% endblock %}

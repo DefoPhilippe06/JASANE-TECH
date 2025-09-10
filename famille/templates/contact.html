@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+{% block title %}Contact - Mon Application{% endblock %}
+{% block content %}
+<div class="max-w-6xl mx-auto px-4 py-8">
+    <!-- En-tête -->
+    <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold text-gray-900 mb-4">Contactez-nous</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Nous sommes là pour vous aider. Posez-nous vos questions ou partagez vos commentaires.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Informations de contact -->
+        <div class="lg:col-span-1 space-y-6">
+            <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-info-circle text-primary-600 mr-2"></i> Informations de contact
+                </h2>
+                
+                <div class="space-y-5">
+                    <div class="flex items-start">
+                        <div class="bg-primary-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-map-marker-alt text-primary-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-900">Adresse</h3>
+                            <p class="text-gray-600">123 Avenue du Commerce<br>75001 Paris, France</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-phone text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-900">Téléphone</h3>
+                            <p class="text-gray-600">+33 1 23 45 67 89</p>
+                            <p class="text-sm text-gray-500">Lun-Ven: 9h-18h</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-green-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-envelope text-green-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-900">Email</h3>
+                            <p class="text-gray-600">support@monapplication.com</p>
+                            <p class="text-sm text-gray-500">Réponse sous 24h</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Réseaux sociaux -->
+            <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-share-alt text-purple-600 mr-2"></i> Suivez-nous
+                </h2>
+                
+                <div class="flex space-x-4">
+                    <a href="#" class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-blue-100 text-blue-400 rounded-full flex items-center justify-center hover:bg-blue-400 hover:text-white transition-colors">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition-colors">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- FAQ rapide -->
+            <div class="bg-white rounded-2xl shadow-md p-6 border border-gray-100">
+                <h2 class="text-xl font-semibold text-gray-900 mb-6 flex items-center">
+                    <i class="fas fa-question-circle text-orange-600 mr-2"></i> Questions fréquentes
+                </h2>
+                
+                <div class="space-y-4">
+                    <div>
+                        <h3 class="font-medium text-gray-900">Quels sont les délais de livraison ?</h3>
+                        <p class="text-sm text-gray-600">Nos délais de livraison sont de 2-5 jours ouvrés.</p>
+                    </div>
+                    <div>
+                        <h3 class="font-medium text-gray-900">Comment retourner un produit ?</h3>
+                        <p class="text-sm text-gray-600">Vous avez 30 jours pour retourner un produit non utilisé.</p>
+                    </div>
+                    <a href="#" class="block text-primary-600 font-medium text-sm hover:text-primary-800 flex items-center">
+                        Voir toutes les questions <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulaire de contact -->
+        <div class="lg:col-span-2">
+            <div class="bg-white rounded-2xl shadow-md p-8 border border-gray-100">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-2">Envoyez-nous un message</h2>
+                <p class="text-gray-600 mb-8">Remplissez le formulaire ci-dessous et nous vous répondrons dans les plus brefs délais.</p>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Votre nom <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-user text-gray-400"></i>
+                                </div>
+                                <input type="text" class="pl-10 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="Votre nom complet" required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Votre email <span class="text-red-500">*</span></label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <i class="fas fa-envelope text-gray-400"></i>
+                                </div>
+                                <input type="email" class="pl-10 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" placeholder="votre@email.com" required>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Sujet <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-tag text-gray-400"></i>
+                            </div>
+                            <select class="pl-10 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" required>
+                                <option value="" disabled selected>Sélectionnez un sujet</option>
+                                <option>Question sur un produit</option>
+                                <option>Problème de commande</option>
+                                <option>Retour ou remboursement</option>
+                                <option>Partenariat</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Votre message <span class="text-red-500">*</span></label>
+                        <div class="relative">
+                            <div class="absolute top-3 left-3 pointer-events-none">
+                                <i class="fas fa-comment text-gray-400"></i>
+                            </div>
+                            <textarea class="pl-10 w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-primary-500 focus:border-primary-500" rows="6" placeholder="Décrivez-nous votre demande en détail..." required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center">
+                        <input type="checkbox" id="newsletter" class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded">
+                        <label for="newsletter" class="ml-2 block text-sm text-gray-700">
+                            M'abonner à la newsletter pour recevoir les dernières actualités
+                        </label>
+                    </div>
+                    
+                    <div class="pt-4">
+                        <button type="submit" class="bg-primary-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-primary-700 transition-colors shadow-md hover:shadow-lg w-full flex items-center justify-center">
+                            <i class="fas fa-paper-plane mr-2"></i> Envoyer le message
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Carte -->
+            <div class="bg-white rounded-2xl shadow-md p-6 mt-8 border border-gray-100">
+                <h2 class="text-xl font-semibold text-gray-900 mb-4 flex items-center">
+                    <i class="fas fa-map-marked-alt text-red-600 mr-2"></i> Notre localisation
+                </h2>
+                
+                <div class="bg-gray-100 rounded-xl h-64 flex items-center justify-center">
+                    <div class="text-center text-gray-500">
+                        <i class="fas fa-map-marker-alt text-4xl mb-2"></i>
+                        <p>Carte interactive</p>
+                        <p class="text-sm">123 Avenue du Commerce, 75001 Paris</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Animation pour les éléments du formulaire */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .grid > div {
+        animation: fadeIn 0.5s ease-out forwards;
+    }
+    
+    .grid > div:nth-child(1) { animation-delay: 0.1s; }
+    .grid > div:nth-child(2) { animation-delay: 0.2s; }
+    
+    /* Style pour les champs focus */
+    input:focus, textarea:focus, select:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.1);
+    }
+</style>
+
+<script>
+    // Animation pour le formulaire
+    document.addEventListener('DOMContentLoaded', function() {
+        const formElements = document.querySelectorAll('input, textarea, select');
+        
+        formElements.forEach((element, index) => {
+            element.style.animation = `fadeIn 0.5s ease-out ${index * 0.1}s forwards`;
+            element.style.opacity = '0';
+        });
+    });
+    
+    // Simulation d'envoi de formulaire
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        
+        // Animation de chargement
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Envoi en cours...';
+        submitButton.disabled = true;
+        
+        // Simulation d'envoi
+        setTimeout(() => {
+            // Message de succès
+            const successMessage = document.createElement('div');
+            successMessage.className = 'bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-6';
+            successMessage.innerHTML = `
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.</span>
+                </div>
+            `;
+            
+            form.parentNode.insertBefore(successMessage, form);
+            
+            // Réinitialisation du formulaire
+            form.reset();
+            submitButton.innerHTML = originalText;
+            submitButton.disabled = false;
+            
+            // Suppression du message après 5 secondes
+            setTimeout(() => {
+                successMessage.remove();
+            }, 5000);
+        }, 2000);
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="flex min-h-screen bg-gray-50 font-sans antialiased">
+    <!-- Sidebar -->
+    <aside class="w-64 bg-gradient-to-br from-blue-800 to-indigo-900 text-white flex-shrink-0 shadow-xl transition-all duration-300 ease-in-out">
+        <div class="p-6 text-2xl font-extrabold border-b border-blue-700/50 flex items-center gap-3">
+            <i class="fas fa-cogs text-blue-300"></i> Admin Panel
+        </div>
+        <nav class="mt-8 flex flex-col gap-3 px-4">
+            <a href="{% url 'admin:index' %}" class="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 hover:text-white transition-all duration-200 ease-in-out group">
+                <i class="fas fa-home text-blue-300 group-hover:text-white transition-colors"></i> Accueil Admin
+            </a>
+            <a href="/admin/famille/products/add/" class="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 hover:text-white transition-all duration-200 ease-in-out group">
+                <i class="fas fa-box text-blue-300 group-hover:text-white transition-colors"></i> Ajouter un produit
+            </a>
+            <a href="/admin/famille/category/add/" class="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 hover:text-white transition-all duration-200 ease-in-out group">
+                <i class="fas fa-tags text-blue-300 group-hover:text-white transition-colors"></i> Ajouter une catégorie
+            </a>
+            <a href="/admin/famille/partners/partner/add/" class="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium hover:bg-blue-700 hover:text-white transition-all duration-200 ease-in-out group">
+                <i class="fas fa-handshake text-blue-300 group-hover:text-white transition-colors"></i> Ajouter un partenaire
+            </a>
+            <a href="/accounts/logout/" class="flex items-center gap-3 px-4 py-3 rounded-lg text-lg font-medium hover:bg-red-600 hover:text-white transition-all duration-200 ease-in-out mt-6 group">
+                <i class="fas fa-sign-out-alt text-blue-300 group-hover:text-white transition-colors"></i> Déconnexion
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-10 bg-gray-50">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-10 border-b-2 pb-4 border-blue-200">Bienvenue sur le tableau de bord administrateur</h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Card 1: Produits -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105 transform">
+                <div class="p-4 bg-blue-100 rounded-full mb-6">
+                    <i class="fas fa-box fa-3x text-blue-600"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">Produits</h2>
+                <p class="text-gray-600 mb-6">Gérez l'ensemble de vos produits. Ajoutez, modifiez ou supprimez des articles de votre catalogue.</p>
+                <a href="/admin/famille/products/add/" class="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-7 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg">
+                    <i class="fas fa-plus-circle mr-2"></i> Ajouter un produit
+                </a>
+            </div>
+
+            <!-- Card 2: Catégories -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105 transform">
+                <div class="p-4 bg-green-100 rounded-full mb-6">
+                    <i class="fas fa-tags fa-3x text-green-600"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">Catégories</h2>
+                <p class="text-gray-600 mb-6">Organisez vos produits en différentes catégories pour une navigation facile.</p>
+                <a href="/admin/famille/category/add/" class="bg-gradient-to-r from-green-600 to-green-700 text-white px-7 py-3 rounded-full font-semibold hover:from-green-700 hover:to-green-800 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg">
+                    <i class="fas fa-plus-circle mr-2"></i> Ajouter une catégorie
+                </a>
+            </div>
+
+            <!-- Card 3: Partenaires -->
+            <div class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-xl hover:scale-105 transform">
+                <div class="p-4 bg-purple-100 rounded-full mb-6">
+                    <i class="fas fa-handshake fa-3x text-purple-600"></i>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800 mb-3">Partenaires</h2>
+                <p class="text-gray-600 mb-6">Gérez vos relations avec les partenaires. Ajoutez de nouveaux collaborateurs.</p>
+                <a href="/admin/famille/partners/partner/add/" class="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-7 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-purple-800 transition-all duration-300 ease-in-out shadow-md hover:shadow-lg">
+                    <i class="fas fa-plus-circle mr-2"></i> Ajouter un partenaire
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+<!-- Font Awesome CDN -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+{% endblock %}
